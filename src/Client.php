@@ -24,6 +24,11 @@ class Client
     private $defaultOptions = [];
 
     /**
+     * @var string
+     */
+    private $cloudOrganizationName = '';
+
+    /**
      * Client constructor.
      *
      * @param $username
