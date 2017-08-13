@@ -33,8 +33,9 @@ class Client
      *
      * @param $username
      * @param $apiKey
+     * @param $organizationName
      */
-    private function __construct($username, $apiKey)
+    private function __construct($username, $apiKey, $organizationName)
     {
         Json::$useBuiltinEncoderDecoder = true;
 
@@ -44,6 +45,10 @@ class Client
                 'Accepts' => 'application/json'
             ]
         ];
+        
+        if ($organizationName) {
+        	$this->cloudOrganizationName = $organizationName;
+        }
     }
 
     /**
@@ -120,12 +125,13 @@ class Client
     /**
      * @param $username
      * @param $apiKey
+     * @param $organizationName
      *
      * @return Client
      */
-    public static function configure($username, $apiKey)
+    public static function configure($username, $apiKey, $organizationName = NULL)
     {
-        self::$instance = new Client($username, $apiKey);
+    	self::$instance = new Client($username, $apiKey, $organizationName);
 
         return self::$instance;
     }
@@ -154,5 +160,13 @@ class Client
         $this->defaultOptions[$option] = $value;
 
         return $this;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getOrganizationNameSpace()
+    {
+    	return '/'.$this->cloudOrganizationName;
     }
 }

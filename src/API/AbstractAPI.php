@@ -42,7 +42,7 @@ abstract class AbstractAPI
      */
     protected function getAPINameSpace()
     {
-        return $this->api_prifix . $this->api_namespace;
+    	return $this->api_prifix . $this->client->getOrganizationNameSpace() . $this->api_namespace;
     }
 
     /**
