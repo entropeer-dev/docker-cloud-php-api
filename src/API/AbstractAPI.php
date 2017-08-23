@@ -13,7 +13,7 @@ abstract class AbstractAPI
     /**
      * @var Client
      */
-    private $client;
+	protected $client;
 
     protected $api_prifix = '/';
 
